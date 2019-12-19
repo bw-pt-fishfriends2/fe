@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Pusher from 'pusher-js'
 import './App.css';
 import axios from 'axios';
 
@@ -24,6 +24,7 @@ class App extends React.Component{
       text: newComment,
       votes: 0,
     };
+    
     axios
       .post('http://localhost:3000/comment', data)
       .then(() => {
@@ -34,9 +35,15 @@ class App extends React.Component{
       })
       .catch(err => console.log(err));
   };
+   vote = (id, num) => {
+    axios.post('http://localhost:3000/vote', {
+      id,
+      vote: num,
+    });
+  };
   componentDidMount(){
-    const pusher = new pusher('<app key>', {
-      cluster: '<app cluster>',
+    const pusher = new Pusher('21c02952-3222-46cf-aa37-cbbd1afd2c61:HjahPtC9aKXXpBWOc8lxVFy1EQomPlD5ppNphon13kw=', {
+      cluster: 'v1:us1:c1b464ee-4217-4cc2-85f6-34719c38e46e',
       encrypted:true,
     });
     axios.get('http://localhost:3000').then(({data})=> {
@@ -54,7 +61,20 @@ class App extends React.Component{
         };
       });
     });
+    channel.bind('new-vote', data => {
+      let { comments } = this.state;
+      comments = comments.map(e => {
+        if (e._id === data.comment._id) {
+          return data.comment;
+        }
+        return e;
+      });
+      this.setState({
+        comments,
+      });
+    });
   }
+
   render(){
     const { username, newComment, comments } = this.state;
     const userComments = comments.map(e => {
@@ -64,10 +84,10 @@ class App extends React.Component{
         <p className="comment-text">{e.text}</p>
         <div className="voting">
           <div className="vote-buttons">
-            <button className="upvote">
+            <button className="upvote" onClick={() => this.vote(e._id, 1)}>
               UpVote
             </button>
-            <button className="downvote">
+            <button className="downvote" onClick={() => this.vote(e._id, -1)}>
               DownVote
             </button>
           </div>
@@ -79,7 +99,7 @@ class App extends React.Component{
       <div className = "App">
         <article className="post">
           <h1>Local Lake!</h1>
-          <img src="fish-friends/Screen Shot 2019-12-19 at 1.16.15 PM.png"/>
+          <img src="fish-friends/lakematthew.png"/>
           <p>Leave a comment if you visited this lake!</p>
         </article>
         <section className="comments-form">
