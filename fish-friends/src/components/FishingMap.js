@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapGL from 'react-map-gl';
 
+
 export default class FishingMap extends Component {
   state= {
     viewport: {
