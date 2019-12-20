@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Container, Card, Button, Form, Input } from 'reactstrap';
+import { Card, Button, Form, Input } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './LoginForm.scss';
@@ -29,8 +29,9 @@ const LoginForm =()=>{
         />
         <Button className="login-button" block>Sign In</Button>
       </Form>
+      
       <div className="login-nav">
-        <h4>I Don't Have An Account</h4>
+        <Link to="/register"><h4>I Don't Have An Account</h4></Link>
         <h4>Forgot Password</h4>
       </div>
 
