@@ -10,6 +10,7 @@ class Popup extends React.Component {
       handleSubmit(e) {
         alert('The value is: ' + this.input.value);
         e.preventDefault();
+        console.log(this.input.value, this.inputDate.value, this.inputLine.value, this.inputLure.value);
       }
     
       render() {
@@ -23,15 +24,15 @@ class Popup extends React.Component {
             </label>
             <label>
               Date / Time:
-              <input type="text" ref={(input) => this.input = input} />
+              <input type="text" ref={(input) => this.inputDate = input} />
             </label>
             <label>
               # Line Used:
-              <input type="text" ref={(input) => this.input = input} />
+              <input type="text" ref={(input) => this.inputLine = input} />
             </label>
             <label>
               Lure / Hook:
-              <input type="text" ref={(input) => this.input = input} />
+              <input type="text" ref={(input) => this.inputLure = input} />
             </label><br/>
             <input type="submit" value="Submit" />
             <button onClick={this.props.closePopup}>Close</button> 
