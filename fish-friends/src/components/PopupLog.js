@@ -1,5 +1,5 @@
 import React from 'react';  
-import './PopupLog.scss';  
+import './PopupLog.css';  
 
 class Popup extends React.Component {  
     constructor(props) {
@@ -15,20 +15,22 @@ class Popup extends React.Component {
       render() {
         return (
           <form onSubmit={this.handleSubmit}>
+              <h1>Fish Log</h1>
+              <h3>Here you can list all your daily catches!</h3>
             <label>
-              Fish Type:  
+              Fish Caught:  
               <input type="text" ref={(input) => this.input = input} />
             </label>
             <label>
-              Date/Time:
+              Date / Time:
               <input type="text" ref={(input) => this.input = input} />
             </label>
             <label>
-              LB test used:
+              # Line Used:
               <input type="text" ref={(input) => this.input = input} />
             </label>
             <label>
-              Lure/Hook:
+              Lure / Hook:
               <input type="text" ref={(input) => this.input = input} />
             </label><br/>
             <input type="submit" value="Submit" />
