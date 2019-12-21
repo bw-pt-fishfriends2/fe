@@ -1,19 +1,16 @@
-import { NativeModules, DeviceEventEmitter } from 'react-native';
-import Config from 'react-native-config';
+
 import Geocoder from 'react-native-geocoding';
 const { Geolocation } = 'react-native-geolocation-service';
 import Reacct, { Component } from 'react';
-import { Styesheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 Geocoder.init('AIzaSyB6z99ZdNTCK0s4Z24_skvbDu4EZRjKL0I');
 Geocoder.from(41.89, 12.49)
     .then(json => {
        
-        console.log(addressComponent);
+        
     })
-    .catch(error => 
-        consolse.warn(error)
-        );
+    
 
 
 export default class GeoLocation extends Component{
@@ -40,7 +37,11 @@ export default class GeoLocation extends Component{
                         this.setState({
                             Address: addressComponent
                         })
+                        console.log(addressComponent);
                     })
+                    .catch(error => 
+                        consolse.warn(error)
+                        );
             },
             (error) => {
                 console.log(error.code, error.message);
@@ -50,6 +51,37 @@ export default class GeoLocation extends Component{
                 timeout: 10000,
                 maximumAge: 100000
             }
-        )
+        );
+    }
+    render(){
+        return(
+            <View>
+            <Text />
+            < Text />
+            <Text/>
+            {
+                this.state.error ? < Text > Error : {
+                    this.state.error
+                } </Text> : null}
+                </View>
+                        
+                 
+            
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    MainContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#f5fcff',
+        padding: 11
+    },
+    text: {
+        fontSize: 22,
+        color: '#000',
+        textAlign: 'center',
+        marginBottom: 10
+    },
+});
