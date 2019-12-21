@@ -1,0 +1,53 @@
+.login-card {
+  max-width: 700px;
+  margin: 60px auto;
+  box-shadow: 0 0 10px #00000024;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 40px;
+
+  .login-logo{
+    display: block;
+    width: 50%;
+    margin: 0px auto 40px auto;
+  }
+
+  .login-input {
+    border: 1px solid #8AA192;
+    border-radius: 6px;
+    height: 40px;
+    margin-bottom:10px;
+  }
+
+  .login-button {
+    margin-bottom: 10px;
+    background: #4CB8C4;
+    border: none;
+    transition: background .3s ease;
+
+    &:hover {
+      background: #44A6B0;
+    }
+  }
+
+  .login-nav {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    h4 {
+      padding: 0 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #4CB8C4;
+      font-weight: 400;
+    }
+    :first-child h4 {
+      border-right: 1px solid #4CB8C4;
+    }
+  }
+}

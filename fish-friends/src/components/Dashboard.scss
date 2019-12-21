@@ -1,0 +1,44 @@
+.db-container {
+    background-color: #ededed;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+
+    .db-cards {
+        max-width:640px;
+        margin-left: 10px;
+
+        .db-navCardContainer {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: row nowrap;
+
+            .db-navCard {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-basis: 200px;
+                flex-grow: 1;
+                margin: 20px 10px 10px 10px;
+                padding: 20px 0;
+            }
+        }
+
+        .db-logCardContainer {
+            display: flex;
+            flex-flow: column no-wrap;
+
+            .db-logCard {
+                width: 100%;
+                margin: 10px;
+                padding: 20px 0;
+
+            }
+        }
+
+    }
+}
+
+.db-navigation {
+    background: #8AA192;
+}
