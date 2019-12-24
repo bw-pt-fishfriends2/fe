@@ -7,7 +7,7 @@ import Dashboard from './components/Dashboard';
 import FindALocation from './components/FindALocation';
 import CreateAccount from './components/CreateAccount';
 
-function App() {
+function App() { 
   return (
     
     <div className="App">
