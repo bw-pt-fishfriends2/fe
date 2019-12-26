@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, NavItem, Navbar } from 'reactstrap';
 
-import './Navigation.scss';
+import './styles/Navigation.scss';
 import HorizontalLogo from '../images/FishFriendsLogo_Horizontal.svg';
 
 const Navigation = () => {

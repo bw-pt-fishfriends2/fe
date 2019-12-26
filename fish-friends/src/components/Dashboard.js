@@ -6,7 +6,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Popup from './PopupLog';
 
-import './Dashboard.scss';
+import './styles/Dashboard.scss';
 
 class App extends Component {  
 
@@ -30,9 +30,14 @@ class App extends Component {
             <div className="db-column db-cards">
 
                 <div className="db-navCardContainer">
-                    <Card className="db-navCard">
-                        <Link><CardText><AssignmentIcon /><button onClick={this.togglePopup.bind(this)}> Create Log</button></CardText></Link>
-                    </Card>
+                  <Card className="db-navCard">
+                  {/* <button onClick={this.togglePopup.bind(this)}> */}
+                    <Link onClick={this.togglePopup.bind(this)}>
+                      <CardText>
+                        <AssignmentIcon /> Create Log
+                      </CardText>
+                    </Link>
+                  </Card>
                     
                     <Card className="db-navCard">
                         <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
