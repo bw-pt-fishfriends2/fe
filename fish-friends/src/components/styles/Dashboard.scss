@@ -5,13 +5,19 @@
     grid-template-columns: 20% 50% 30%;
 
     .db-cards {
-        max-width:640px;
+        max-width: 640px;
         margin-left: 10px;
 
         .db-navCardContainer {
             display: flex;
             justify-content: space-between;
             flex-flow: row nowrap;
+            
+            a {
+              color: #87A294;
+              text-decoration: none;
+              cursor: pointer;
+            }
 
             .db-navCard {
                 display: flex;
@@ -21,19 +27,55 @@
                 flex-grow: 1;
                 margin: 20px 10px 10px 10px;
                 padding: 20px 0;
+                box-shadow: 0px 0px 3px #00000029;
+                border-radius: 10px;
+  
             }
         }
 
         .db-logCardContainer {
-            display: flex;
-            flex-flow: column no-wrap;
+          display: flex;
+          flex-flow: column no-wrap;
 
-            .db-logCard {
-                width: 100%;
-                margin: 10px;
-                padding: 20px 0;
+          .db-logCard {
+              width: 100%;
+              margin: 10px;
+              padding: 20px;
+              box-shadow: 0px 0px 3px #00000029;
+              border-radius: 10px;
 
+            .db-logCardHeader {
+              font-family: Helvetica, sans-serif;
+              margin-bottom: 10px;
+
+              .db-userImage {
+                border-radius: 45px;
+                margin-right: 10px;
+              }
+
+              .db-userName {
+                line-height: 45px;
+              }
             }
+
+            .db-logCardStats {
+
+              margin-bottom: 10px;
+
+              .db-fishSpecies {
+                font-size: 20px;
+                color: #BFB4AE;
+                margin-bottom: 10px;
+              }
+
+              .db-logCardMeta {
+                font-size: 15px;
+                line-height: 18px;
+                margin-bottom: 5px;
+              }
+            }
+
+          }
         }
 
     }

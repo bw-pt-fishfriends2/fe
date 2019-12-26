@@ -8,6 +8,8 @@ import Popup from './PopupLog';
 
 import './styles/Dashboard.scss';
 
+import { DashboardLogCard } from './DashboardLogCard';
+
 class App extends Component {  
 
     constructor(props){  
@@ -31,7 +33,6 @@ class App extends Component {
 
                 <div className="db-navCardContainer">
                   <Card className="db-navCard">
-                  {/* <button onClick={this.togglePopup.bind(this)}> */}
                     <Link onClick={this.togglePopup.bind(this)}>
                       <CardText>
                         <AssignmentIcon /> Create Log
@@ -45,9 +46,7 @@ class App extends Component {
                 </div>
 
                 <div className="db-logCardContainer">
-                    <Card className="db-logCard">
-                        <h3>Stuff</h3>
-                    </Card>
+                  <DashboardLogCard />
                 </div>
             </div>
             <div className="db-column db-stats">
