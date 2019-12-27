@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, Button, Form, Input } from 'reactstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import './LoginForm.scss';
+import './styles/LoginForm.scss';
 
 import Logo from '../images/FishFriendsLogo.svg';
 
