@@ -6,6 +6,10 @@
   opacity: 1;
   padding: 40px;
 
+  .modal-dialog {
+    max-width: 800px;
+  }
+
   .login-logo{
     display: block;
     width: 50%;
@@ -51,3 +55,4 @@
     }
   }
 }
+

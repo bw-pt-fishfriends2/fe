@@ -41,7 +41,7 @@ const LoginForm =()=>{
         <h4>Forgot Password</h4>
       </div>
 
-      <Modal isOpen={modal} toggle={toggle} className="login-createAccount">
+      <Modal isOpen={modal} toggle={toggle} size="lg" className="login-createAccount">
         <CreateAccount />
       </Modal>
     </Card>
