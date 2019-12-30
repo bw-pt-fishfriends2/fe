@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, CardHeader, Media, CardSubtitle, CardText, CardImg } from 'reactstrap'
+import { Card, Media, CardSubtitle, CardText, CardImg } from 'reactstrap'
 import './styles/Dashboard.scss';
 
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
