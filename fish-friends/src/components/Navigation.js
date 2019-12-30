@@ -30,7 +30,9 @@ const Navigation = (props) => {
           </NavItem>
 
           <NavItem>
-            <Link to="/dashboard">Dashboard</Link>
+            {/* <Link to="/dashboard">Dashboard</Link> */}
+            {loggedIn ? <Link to="/dashboard">Dashboard</Link> : ""}
+
           </NavItem>
 
           <NavItem>
