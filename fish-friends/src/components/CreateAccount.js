@@ -17,6 +17,7 @@ const CreateAccount = ({ errors, touched }) => {
         <div>
             <Card className="login-card">
                 <img src={Logo} alt="Fish Friends Logo" className="login-logo" />
+                <h3 className="form-title">Create an Account</h3>
                 <Form className="login-form">
                     <Field type="text" name="username" placeholder="User Name" className="login-input" />
                     {touched.username && errors.username && <p>{errors.username}</p>}
