@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardText, Modal } from 'reactstrap'
 
@@ -9,23 +9,14 @@ import Popup from './PopupLog';
 import './styles/Dashboard.scss';
 
 import { DashboardLogCard } from './DashboardLogCard';
-import axiosWithAuth from '../utils/AxiosWithAuth';
+// import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const Dashboard = () => {  
 
   const [createLogModal, setCreateLogModal] = useState(false);
   const toggleCreateLogModal = () => setCreateLogModal(!createLogModal);
+
   
-    // constructor(props){  
-    //     super(props);  
-    //     this.state = { showPopup: false };  
-    // }  
-  
-    // togglePopup() {  
-    //     this.setState({  
-    //         showPopup: !this.state.showPopup  
-    //     });  
-    // }     
   return (
       <div className="db-container">
           <div className="db-column db-navigation">

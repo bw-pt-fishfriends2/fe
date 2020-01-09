@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { UserContext } from '../contexts/UserContext';
 
 import { Card, Media, CardSubtitle, CardText, CardImg } from 'reactstrap'
 import './styles/Dashboard.scss';
@@ -7,6 +9,10 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export const DashboardLogCard = (props) => {
+
+  const { user } = useContext(UserContext);
+  console.log("DashboardLogCard.js User: ", user);
+  
   return (
     <Card className="db-logCard">
       <Media className="db-logCardHeader">

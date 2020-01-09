@@ -1,71 +1,86 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { axiosWithAuth } from '../utils/AxiosWithAuth';
-
+import axios from 'axios'
 import { Card, Button, Form, Input, Modal } from 'reactstrap';
-import CreateAccount from './CreateAccount';
 
+//IMPORT STYLES
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/LoginForm.scss';
 
+//IMPORT COMPONENTS AND ASSETS
+import CreateAccount from './CreateAccount';
 import Logo from '../images/FishFriendsLogo.svg';
 
-const LoginForm =(props)=>{
+//IMPORT CONTEXT
+import UserContext from '../contexts/UserContext';
+
+const LoginForm = (props) =>{
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const [login, setLogin] = useState({
-    username: '',
-    password: '',
+  const {setUser} = useContext(UserContext);
+  const [state, setState] = useState({
+    credentials: {
+      username: '',
+      password: '',
+    }
   })
 
   const handleChange = (e) => {
-    setLogin({...login, [e.target.name]: e.target.value})
+    setState({
+      credentials: {
+        ...state.credentials,
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
-  const handleLogin = (e) =>{
-    e.preventDefault();
-    axiosWithAuth()
-      .post(`https://fish-friends.herokuapp.com/authRoute/login`, login)
-      .then (res=> {
-        console.log('LoginForm.js handleLogin: ', res);
-        localStorage.setItem('token', res.data.payload);
-        props.history.push('/dashboard');
-      })
-      .catch(err=> {
-        console.log('LoginForm.js handleLogin Error', err.message)
-      });
+  // console.log(state.credentials);
 
-      setLogin({
-        username: '',
-        password: '',
+  const login = (e) => {
+    e.preventDefault()
+
+    axios
+      .post(`https://fish-friends.herokuapp.com/authRoute/login`, state.credentials)
+      .then(res=> {
+        console.log("axios post res.data from LoginForm.js",res);
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('username', state.credentials.username)
+        localStorage.setItem('userId', res.data.userId)
+        setUser({
+          username: state.credentials.username,
+          userId: res.data.userId
+        })
+        props.history.push('/Dashboard')
       })
+      .catch(err=>console.log(err.message))
   }
 
   return(
     <Card className="login-card">
       <img src={Logo} alt="Fish Friends Logo" className="login-logo" />
       <h3 className="form-title">Login to you account</h3>
-      <Form className="login-form" onSubmit={handleLogin} >
+      <Form className="login-form" onSubmit={login}>
         <Input
           type="text"
           name="username"
-          value={login.username}
-          onChange={handleChange}
           className="login-input"
           placeholder="User Name"
+          value={state.credentials.username}
+          onChange={handleChange}
         />
 
         <Input
           type="password"
           name="password"
-          value={login.password}
-          onChange={handleChange}
           className="login-input"
           placeholder="Password"
+          value={state.credentials.password}
+          onChange={handleChange}
+
         />
-        <Button className="login-button" onSubmit={handleLogin} block>Sign In</Button>
+        <Button className="login-button" type="submit" block>Sign In</Button>
       </Form>
       
       <div className="login-nav">
