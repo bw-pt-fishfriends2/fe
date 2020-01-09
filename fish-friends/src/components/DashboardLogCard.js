@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/AxiosWithAuth';
+
+import { UserContext } from '../contexts/UserContext';
 
 import { Card, Media, CardSubtitle, CardText, CardImg } from 'reactstrap'
 import './styles/Dashboard.scss';
@@ -6,7 +9,23 @@ import './styles/Dashboard.scss';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-export const DashboardLogCard = (props) => {
+export const DashboardLogCard = () => {
+
+  // const { user } = useContext(UserContext);
+  // console.log("DashboardLogCard.js User: ", user);
+
+  const [log, setLog] = useState([])
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("logRoute/all-logs/")
+      .then(res => {
+        setLog(res.data);
+      })
+      .catch(err=> console.log(err.message));
+  }, []);
+  
+  
   return (
     <Card className="db-logCard">
       <Media className="db-logCardHeader">
@@ -15,28 +34,29 @@ export const DashboardLogCard = (props) => {
         </Media>
 
         <Media heading className="db-userName">
-          First Last
+          {log.username}
         </Media>
       </Media>
       
       <div className="db-logCardStats">
         <CardSubtitle className="db-fishSpecies">
-          Fish Species | 10lbs 8ozs
+         Species: {log.fishName}
+        </CardSubtitle>
+
+        <CardSubtitle className="db-baitType">
+         Bait Type: {log.baitType}
         </CardSubtitle>
 
         <CardText className="db-logCardMeta">
-          <AccessTimeIcon style={{fontSize: 15}}/> January 1, 2020 - 12:00 PM
+          <AccessTimeIcon style={{fontSize: 15}}/> {log.timeOfDay}
         </CardText>
 
         <CardText className="db-logCardMeta">
-          <LocationOnIcon style={{fontSize: 15}}/> Lake of the Woods | Warroad, Minnesota
+          <LocationOnIcon style={{fontSize: 15}}/> {log.facilityName}
         </CardText>
       </div>
 
       <div className="db-logCardInfo">
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel mi vel velit pharetra condimentum. Morbi eu placerat orci, efficitur lacinia metus. Pellentesque viverra tincidunt diam, vel varius turpis tempus vitae. Nam suscipit augue at arcu pulvinar, porta venenatis orci aliquet.
-        </CardText>
         <CardImg bottom width="100%" src="https://via.placeholder.com/530x345" alt="Image of catch" />
       </div>
 

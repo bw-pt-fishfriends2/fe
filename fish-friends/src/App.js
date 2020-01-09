@@ -1,26 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navigation from './components/Navigation';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+
+//IMPORT COMPONENTS AND ASSETS
 import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import FindALocation from './components/FindALocation';
 import CreateAccount from './components/CreateAccount';
 import PrivateRoute from './utils/PrivateRoute';
 
+//IMPORT STYLES
+import './App.css';
+import { UserProvider } from './contexts/UserContext';
+
 function App() { 
+
+  const [user, setUser] = useState({
+    username: localStorage.getItem('username'),
+    userId: localStorage.getItem('userId')
+  });
+
   return (
-    
-    <div className="App">
-      <Navigation />
-
-      <Route exact path="/" component={LoginForm} />
-      <Route path="/register" component={CreateAccount} />
-      <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute exact path="/fish-finder" component={FindALocation} />
-      
-    </div>
-
+    <UserProvider value={{user, setUser}}>
+      <div className="App">
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={LoginForm} />
+          <Route path="/register" component={CreateAccount} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/fish-finder" component={FindALocation} />
+        </Switch>
+      </div>
+    </UserProvider>
   );
 }
 
