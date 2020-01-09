@@ -46,6 +46,7 @@ const LoginForm =(props)=>{
   return(
     <Card className="login-card">
       <img src={Logo} alt="Fish Friends Logo" className="login-logo" />
+      <h3 className="form-title">Login to you account</h3>
       <Form className="login-form" onSubmit={handleLogin} >
         <Input
           type="text"
@@ -68,8 +69,10 @@ const LoginForm =(props)=>{
       </Form>
       
       <div className="login-nav">
-        {/* <Link to="/register"><h4>I Don't Have An Account</h4></Link> */}
-        <Link onClick={toggle}><h4>I Don't Have An Account</h4></Link>
+        <Link onClick={toggle}>
+          <h4>I Don't Have An Account</h4>
+        </Link>
+
         <h4>Forgot Password</h4>
       </div>
 

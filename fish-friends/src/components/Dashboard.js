@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'reactstrap'
+import { Card, CardText, Modal } from 'reactstrap'
 
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -9,58 +9,63 @@ import Popup from './PopupLog';
 import './styles/Dashboard.scss';
 
 import { DashboardLogCard } from './DashboardLogCard';
+import axiosWithAuth from '../utils/AxiosWithAuth';
 
-class App extends Component {  
+const Dashboard = () => {  
 
-    constructor(props){  
-        super(props);  
-        this.state = { showPopup: false };  
-    }  
+  const [createLogModal, setCreateLogModal] = useState(false);
+  const toggleCreateLogModal = () => setCreateLogModal(!createLogModal);
   
-    togglePopup() {  
-        this.setState({  
-            showPopup: !this.state.showPopup  
-        });  
-    }  
+    // constructor(props){  
+    //     super(props);  
+    //     this.state = { showPopup: false };  
+    // }  
   
-    render() {    
-    return (
-        <div className="db-container">
-            <div className="db-column db-navigation">
-                <h1>Dashboard Nav</h1>
-            </div>
-            <div className="db-column db-cards">
+    // togglePopup() {  
+    //     this.setState({  
+    //         showPopup: !this.state.showPopup  
+    //     });  
+    // }     
+  return (
+      <div className="db-container">
+          <div className="db-column db-navigation">
+              <h1>Dashboard Nav</h1>
+          </div>
+          <div className="db-column db-cards">
 
-                <div className="db-navCardContainer">
+              <div className="db-navCardContainer">
+                <Card className="db-navCard">
+                  <Link onClick={toggleCreateLogModal}>
+                    <CardText>
+                      <AssignmentIcon /> Create Log
+                    </CardText>
+                  </Link>
+                </Card>
+                  
                   <Card className="db-navCard">
-                    <Link onClick={this.togglePopup.bind(this)}>
-                      <CardText>
-                        <AssignmentIcon /> Create Log
-                      </CardText>
-                    </Link>
+                      <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
                   </Card>
-                    
-                    <Card className="db-navCard">
-                        <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
-                    </Card>
-                </div>
+              </div>
 
-                <div className="db-logCardContainer">
-                  <DashboardLogCard />
-                </div>
-            </div>
-            <div className="db-column db-stats">
-                <h1>Stats</h1>
-            </div>
-            {this.state.showPopup ?  
-                <Popup  
-                    text='Click "Close Button" to hide popup'  
-                    closePopup={this.togglePopup.bind(this)}  
-                />  
-            : null  
-            }  
-        </div>
-      )
-    }
+              <div className="db-logCardContainer">
+                <DashboardLogCard />
+              </div>
+
+          </div>
+          <div className="db-column db-stats">
+              <h1>Stats</h1>
+          </div>
+          {/* {this.state.showPopup ?  
+              <Popup  
+                  text='Click "Close Button" to hide popup'  
+                  closePopup={this.togglePopup.bind(this)}  
+              />  
+          : null  
+          }   */}
+      <Modal isOpen={createLogModal} toggle={toggleCreateLogModal} size="lg" className="login-createAccount">
+        <Popup />
+      </Modal>  
+      </div>
+    )
 }
-export default App;
+export default Dashboard;
