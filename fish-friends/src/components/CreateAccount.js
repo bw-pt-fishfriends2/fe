@@ -94,12 +94,11 @@ const CreateAccount = (props) => {
         axios
             .post(`https://fish-friends.herokuapp.com/authRoute/register`, register)
             .then(res => {
-                console.log('CreateAccount.js handleRegister: ', res);
                 localStorage.setItem('token', res.data.payload);
                 props.history.push('/dashboard');
             })
             .catch(err => {
-                console.log('LoginForm.js handleRegister Error', err.message)
+                console.log('There was an error!', err.message)
             });
 
         setRegister({
