@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/AxiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Card, CardText, Modal } from 'reactstrap'
 
@@ -11,12 +12,26 @@ import './styles/Dashboard.scss';
 import { DashboardLogCard } from './DashboardLogCard';
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
-const Dashboard = () => {  
+const Dashboard = (props) => {
+
+  console.log("Props from Dashboard.js", props);
 
   const [createLogModal, setCreateLogModal] = useState(false);
   const toggleCreateLogModal = () => setCreateLogModal(!createLogModal);
-
   
+  const [logs, setLogs] = useState([])
+  console.log(logs)
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("logRoute/all-logs/")
+      .then(res => {
+        setLogs(res.data)
+        console.log(res.data)
+      })
+      .catch(err=> console.log(err.message));
+  }, []);
+
   return (
       <div className="db-container">
           <div className="db-column db-navigation">
@@ -39,7 +54,14 @@ const Dashboard = () => {
               </div>
 
               <div className="db-logCardContainer">
-                <DashboardLogCard />
+
+                {[...logs].slice(0,5).map(logData => (
+                  <DashboardLogCard
+                    key={logData.log_id}
+                    username={logData.username}
+                    fishName={logData.fishName}
+                  />
+                ))}                
               </div>
 
           </div>
