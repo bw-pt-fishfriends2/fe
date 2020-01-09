@@ -68,13 +68,6 @@ const Dashboard = (props) => {
           <div className="db-column db-stats">
               <h1>Stats</h1>
           </div>
-          {/* {this.state.showPopup ?  
-              <Popup  
-                  text='Click "Close Button" to hide popup'  
-                  closePopup={this.togglePopup.bind(this)}  
-              />  
-          : null  
-          }   */}
       <Modal isOpen={createLogModal} toggle={toggleCreateLogModal} size="lg" className="login-createAccount">
         <Popup />
       </Modal>  
