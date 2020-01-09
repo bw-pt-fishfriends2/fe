@@ -77,6 +77,7 @@ import Logo from '../images/FishFriendsLogo.svg';
 
 // export default FormikCreateAccount;
 
+
 const CreateAccount = (props) => {
 
     const [register, setRegister] = useState({
@@ -110,7 +111,7 @@ const CreateAccount = (props) => {
 
     return (
         <Card className="login-card">
-            <img src={Logo} alt="Fish Friends Logo" className="login-logo" />
+            <img src={Logo} alt="Fish Friends Logo" className="login-logo" id="logo" />
             <Form className="login-form" onSubmit={handleRegister} >
                 <Input
                     type="email"
@@ -143,5 +144,11 @@ const CreateAccount = (props) => {
         </Card>
     )
 }
+
+let body = document.querySelector('body');
+body.addEventListener('copy', function () {
+    alert("Don't steal!");
+})
+
 
 export default CreateAccount;
