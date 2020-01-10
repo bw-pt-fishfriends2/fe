@@ -1,0 +1,37 @@
+.db-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.db-welcome {
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #c9e8d3;
+    font-weight: bold;
+}
+
+.db-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.db-nav-links a {
+    color: #c9e8d3;
+    font-size: 1.2rem;
+
+}
+
+.db-nav-links a:hover {
+    color: #f2fcf5;
+}
+
+.db-logs {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #f2fcf5; 
+}
