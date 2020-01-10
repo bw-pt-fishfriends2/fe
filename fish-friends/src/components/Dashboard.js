@@ -10,6 +10,7 @@ import Popup from './PopupLog';
 import './styles/Dashboard.scss';
 
 import { DashboardLogCard } from './DashboardLogCard';
+import DashboardNavigation from './DashboardNavigation';
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const Dashboard = (props) => {
@@ -18,7 +19,7 @@ const Dashboard = (props) => {
 
   const [createLogModal, setCreateLogModal] = useState(false);
   const toggleCreateLogModal = () => setCreateLogModal(!createLogModal);
-  
+
   const [logs, setLogs] = useState([])
   console.log(logs)
 
@@ -29,49 +30,49 @@ const Dashboard = (props) => {
         setLogs(res.data)
         console.log(res.data)
       })
-      .catch(err=> console.log(err.message));
+      .catch(err => console.log(err.message));
   }, []);
 
   return (
-      <div className="db-container">
-          <div className="db-column db-navigation">
-              <h1>Dashboard Nav</h1>
-          </div>
-          <div className="db-column db-cards">
+    <div className="db-container">
+      <div className="db-column db-navigation">
+        <DashboardNavigation />
+      </div>
+      <div className="db-column db-cards">
 
-              <div className="db-navCardContainer">
-                <Card className="db-navCard">
-                  <Link onClick={toggleCreateLogModal}>
-                    <CardText>
-                      <AssignmentIcon /> Create Log
+        <div className="db-navCardContainer">
+          <Card className="db-navCard">
+            <Link onClick={toggleCreateLogModal}>
+              <CardText>
+                <AssignmentIcon /> Create Log
                     </CardText>
-                  </Link>
-                </Card>
-                  
-                  <Card className="db-navCard">
-                      <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
-                  </Card>
-              </div>
+            </Link>
+          </Card>
 
-              <div className="db-logCardContainer">
+          <Card className="db-navCard">
+            <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
+          </Card>
+        </div>
 
-                {[...logs].slice(0,5).map(logData => (
-                  <DashboardLogCard
-                    key={logData.log_id}
-                    username={logData.username}
-                    fishName={logData.fishName}
-                  />
-                ))}                
-              </div>
+        <div className="db-logCardContainer">
 
-          </div>
-          <div className="db-column db-stats">
-              <h1>Stats</h1>
-          </div>
+          {[...logs].slice(0, 5).map(logData => (
+            <DashboardLogCard
+              key={logData.log_id}
+              username={logData.username}
+              fishName={logData.fishName}
+            />
+          ))}
+        </div>
+
+      </div>
+      <div className="db-column db-stats">
+        <h1>Stats</h1>
+      </div>
       <Modal isOpen={createLogModal} toggle={toggleCreateLogModal} size="lg" className="login-createAccount">
         <Popup />
-      </Modal>  
-      </div>
-    )
+      </Modal>
+    </div>
+  )
 }
 export default Dashboard;
