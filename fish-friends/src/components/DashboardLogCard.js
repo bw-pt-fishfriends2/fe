@@ -27,7 +27,7 @@ export const DashboardLogCard = (props) => {
 
   const cancel = e => {
     e.preventDefault();
-    props.history.push(`/`);
+    log.push(`/`);
   };
   const editEvent = {
     // species: ,
@@ -39,7 +39,7 @@ export const DashboardLogCard = (props) => {
   const deleteEvent = e => {
     e.preventDefault();
     axiosWithAuth()
-      .delete('logRoute/${log.id}')
+      .delete(`logRoute/${log.id}`)
       .then(res => {
         log.history.push(`/Home`);
       })
