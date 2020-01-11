@@ -38,6 +38,10 @@ const Navigation = (props) => {
           <NavItem>
             {loggedIn ? "" : <Link to="/register">Create Account</Link> }
           </NavItem>
+
+          <NavItem>
+            {loggedIn ? "" : <Link to="/NewLog">Personal Log</Link> }
+          </NavItem>
         </Nav>
       </Navbar>
     </div>

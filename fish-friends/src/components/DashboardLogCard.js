@@ -9,7 +9,7 @@ import './styles/Dashboard.scss';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-export const DashboardLogCard = (props) => {
+export const DashboardLogCard = props => {
 
   // const { user } = useContext(UserContext);
   // console.log("DashboardLogCard.js User: ", user);
@@ -25,10 +25,6 @@ export const DashboardLogCard = (props) => {
       .catch(err=> console.log(err.message));
   }, []);
 
-  const cancel = e => {
-    e.preventDefault();
-    log.push(`/`);
-  };
   const editEvent = {
     // species: ,
     // baitused: ,
@@ -39,9 +35,9 @@ export const DashboardLogCard = (props) => {
   const deleteEvent = e => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(`logRoute/${log.id}`)
+      .delete(`logRoute/${props.log}`)
       .then(res => {
-        log.history.push(`/Home`);
+        log.push(`/`);
       })
       .catch(err => console.error(err));
   };

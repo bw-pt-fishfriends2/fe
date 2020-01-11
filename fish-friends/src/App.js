@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import FindALocation from './components/FindALocation';
 import CreateAccount from './components/CreateAccount';
 import PrivateRoute from './utils/PrivateRoute';
+import UserTable from './components/UserTable';
 
 //IMPORT STYLES
 import './App.css';
