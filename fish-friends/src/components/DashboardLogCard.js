@@ -52,12 +52,10 @@ export const DashboardLogCard = (props) => {
         <Media left href="#">
           <Media object src="https://via.placeholder.com/45" alt="Generic placeholder image" className="db-userImage"/>
         </Media>
-
         <Media heading className="db-userName">
           {log.username}
         </Media>
       </Media>
-      
       <div className="db-logCardStats">
         <CardSubtitle className="db-fishSpecies">
          Species: {log.fishName}
@@ -81,7 +79,6 @@ export const DashboardLogCard = (props) => {
           Delete
         </Button>
       </div>
-
       <div className="db-logCardInfo">
         <CardImg bottom width="100%" src="https://via.placeholder.com/530x345" alt="Image of catch" />
       </div>
