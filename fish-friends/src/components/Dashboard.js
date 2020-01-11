@@ -3,6 +3,8 @@ import axiosWithAuth from '../utils/AxiosWithAuth';
 import { Link } from 'react-router-dom';
 import { Card, CardText, Modal } from 'reactstrap'
 
+import AddUserForm from './AddUserForm';
+import UserTable from './UserTable';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Popup from './PopupLog';
@@ -23,6 +25,23 @@ const Dashboard = (props) => {
   const [logs, setLogs] = useState([])
   console.log(logs)
 
+  const addUser = user => {
+    user.id = users.length + 1
+    setUsers([...users, user])
+  }
+
+  const deleteUser = id => {
+    setUsers(users.filter(user => user.id !== id))
+  }
+
+  const usersData = [
+    { id: 1, name: 'Tania', username: 'floppydiskette' },
+    { id: 2, name: 'Craig', username: 'siliconeidolon' },
+    { id: 3, name: 'Ben', username: 'benisphere' },
+  ]
+
+  const [users, setUsers] = useState(usersData)
+
   useEffect(() => {
     axiosWithAuth()
       .get("logRoute/all-logs/")
@@ -39,16 +58,26 @@ const Dashboard = (props) => {
         <DashboardNavigation />
       </div>
       <div className="db-column db-cards">
-
+        <div className="container">
+            <h1>Create a PERSONAL LOG!</h1>
+            <div className="flex-row">
+              <div className="flex-large">
+                <AddUserForm addUser={addUser} />
+              </div>
+              <div className="flex-large">
+                <h2>Your Logs:</h2>
+                <UserTable users={users} deleteUser={deleteUser} />
+              </div>
+          </div>
+        </div>
         <div className="db-navCardContainer">
           <Card className="db-navCard">
             <Link onClick={toggleCreateLogModal}>
               <CardText>
                 <AssignmentIcon /> Create Log
-                    </CardText>
+              </CardText>
             </Link>
           </Card>
-
           <Card className="db-navCard">
             <Link to="/fish-finder"><CardText><LocationOnIcon /> Find A Fishing Location</CardText></Link>
           </Card>

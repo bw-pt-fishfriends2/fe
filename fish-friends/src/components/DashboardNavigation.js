@@ -10,7 +10,7 @@ function DashboardNavigation() {
 
     useEffect((props) => {
         axios
-            .get("https://fish-friends.herokuapp.com/logRoute/all-logs")
+            .get(`https://fish-friends.herokuapp.com/logRoute/all-logs`)
             .then(res => {
                 setLogNumber(res.data.length)
             })

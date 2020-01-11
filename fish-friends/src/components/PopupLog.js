@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/PopupLog.css';  
 
 class Popup extends React.Component {  
-    constructor(props) {
+      constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -19,15 +19,11 @@ class Popup extends React.Component {
               <h1>Fish Log</h1>
               <h3>Here you can list all your daily catches!</h3>
             <label>
-              Fish Caught:  
+              Species: 
               <input type="text" ref={(input) => this.input = input} />
             </label>
             <label>
-              Date / Time:
-              <input type="text" ref={(input) => this.inputDate = input} />
-            </label>
-            <label>
-              # Line Used:
+              Bait Used:
               <input type="text" ref={(input) => this.inputLine = input} />
             </label>
             <label>
